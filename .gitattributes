@@ -1,2 +1,1741 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberCop Ultimate AI Security System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0F172A;
+            --secondary-color: #1E293B;
+            --accent-color: #D4AF37;
+            --accent-secondary: #9F2B68;
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --danger-color: #DC2626;
+            --success-color: #16A34A;
+            --warning-color: #FBBF24;
+            --info-color: #0EA5E9;
+        }
+        
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+        }
+        
+        .neo-brutalism {
+            box-shadow: 5px 5px 0px rgba(212, 175, 55, 0.5);
+        }
+        
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+        
+        .glow-danger {
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+        }
+        
+        .glow-success {
+            box-shadow: 0 0 15px rgba(22, 163, 74, 0.5);
+        }
+        
+        .glow-warning {
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, #D4AF37, #F0E68C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .border-gradient {
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        
+        .border-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+        }
+        
+        .svg-container {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+        
+        .cyber-grid {
+            background-image:
+                linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+        
+        .rotating-shield {
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .scanner-line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            animation: scan 3s ease-in-out infinite;
+        }
+        
+        @keyframes scan {
+            0% { top: 0%; opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0.5; }
+        }
+        
+        .hacking-text {
+            font-family: monospace;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0;
+            letter-spacing: 0.1em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            border-right: 2px solid var(--accent-color);
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+        
+        .hexagon {
+            position: relative;
+            width: 100px;
+            height: 57.74px;
+            background-color: var(--secondary-color);
+            margin: 28.87px 0;
+        }
+        
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+        }
+        
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 28.87px solid var(--secondary-color);
+        }
+        
+        .hexagon:after {
+            top: 100%;
+            width: 0;
+            border-top: 28.87px solid var(--secondary-color);
+        }
+        
+        .hexagon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 100px);
+            grid-gap: 15px;
+            justify-content: center;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .cyber-dog {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+        
+        .cyber-dog-head {
+            position: absolute;
+            width: 60px;
+            height: 50px;
+            background-color: #333;
+            top: 10px;
+            left: 30px;
+            border-radius: 15px;
+        }
+        
+        .cyber-dog-eye {
+            position: absolute;
+            width: 12px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            animation: cyber-dog-eye-blink 3s infinite;
+        }
+        
+        .cyber-dog-eye-left {
+            top: 20px;
+            left: 10px;
+        }
+        
+        .cyber-dog-eye-right {
+            top: 20px;
+            right: 10px;
+        }
+        
+        @keyframes cyber-dog-eye-blink {
+            0% { height: 6px; }
+            95% { height: 6px; }
+            97% { height: 1px; }
+            100% { height: 6px; }
+        }
+        
+        .cyber-dog-ear {
+            position: absolute;
+            width: 18px;
+            height: 25px;
+            background-color: #222;
+            top: 0;
+            border-radius: 5px;
+        }
+        
+        .cyber-dog-ear-left {
+            left: 10px;
+            transform: rotate(-20deg);
+        }
+        
+        .cyber-dog-ear-right {
+            right: 10px;
+            transform: rotate(20deg);
+        }
+        
+        .cyber-dog-snout {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background-color: #222;
+            bottom: 0;
+            left: 15px;
+            border-radius: 10px;
+        }
+        
+        .cyber-dog-body {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            background-color: #444;
+            top: 60px;
+            left: 20px;
+            border-radius: 10px;
+        }
+        
+        .cyber-dog-leg {
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            background-color: #333;
+            border-radius: 3px;
+        }
+        
+        .cyber-dog-leg-front-left {
+            top: 60px;
+            left: 25px;
+        }
+        
+        .cyber-dog-leg-front-right {
+            top: 60px;
+            right: 25px;
+        }
+        
+        .cyber-dog-leg-back-left {
+            top: 60px;
+            left: 85px;
+        }
+        
+        .cyber-dog-leg-back-right {
+            top: 60px;
+            right: 85px;
+        }
+        
+        .cyber-dog-tail {
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background-color: #333;
+            top: 70px;
+            right: 5px;
+            border-radius: 4px;
+            transform-origin: top center;
+            animation: cyber-dog-tail-wag 2s infinite;
+        }
+        
+        @keyframes cyber-dog-tail-wag {
+            0% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+        
+        /* Neural network visualization */
+        .neural-network {
+            position: relative;
+            height: 200px;
+            margin: 20px auto;
+        }
+        
+        .neural-node {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform-origin: left center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        /* Progress Circle */
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(212, 175, 55, 0.2);
+            stroke-width: 4;
+        }
+        
+        .progress-circle-fill {
+            fill: none;
+            stroke: var(--accent-color);
+            stroke-width: 4;
+            stroke-linecap: round;
+            transition: stroke-dasharray 0.5s ease;
+        }
+        
+        /* Active threat animations */
+        .threat-pulse {
+            animation: threat-pulse 2s infinite;
+        }
+        
+        @keyframes threat-pulse {
+            0% { background-color: rgba(220, 38, 38, 0.3); }
+            50% { background-color: rgba(220, 38, 38, 0.6); }
+            100% { background-color: rgba(220, 38, 38, 0.3); }
+        }
+        
+        /* Data visualization bars */
+        .data-bar {
+            height: 4px;
+            margin: 2px 0;
+            border-radius: 2px;
+            animation: data-bar-anim 10s infinite;
+        }
+        
+        @keyframes data-bar-anim {
+            0% { width: var(--init-width); }
+            20% { width: calc(var(--init-width) + 20%); }
+            40% { width: calc(var(--init-width) - 10%); }
+            60% { width: calc(var(--init-width) + 5%); }
+            80% { width: calc(var(--init-width) - 5%); }
+            100% { width: var(--init-width); }
+        }
+        
+        /* Matrix-style code rain */
+        .code-rain {
+            position: relative;
+            height: 100px;
+            overflow: hidden;
+            background-color: rgba(15, 23, 42, 0.8);
+            border-radius: 8px;
+        }
+        
+        .code-column {
+            position: absolute;
+            top: -100px;
+            font-family: monospace;
+            color: var(--accent-color);
+            font-size: 14px;
+            text-align: center;
+            opacity: 0.8;
+            animation: code-fall linear infinite;
+        }
+        
+        @keyframes code-fall {
+            to { transform: translateY(400px); }
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.05em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+        
+        /* Radar scanning effect */
+        .radar {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(30, 41, 59, 0.5);
+            overflow: hidden;
+        }
+        
+        .radar-sweep {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
+            background: conic-gradient(
+                from 0deg,
+                rgba(212, 175, 55, 0) 0%,
+                rgba(212, 175, 55, 0) 90%,
+                rgba(212, 175, 55, 0.4) 95%,
+                rgba(212, 175, 55, 0.6) 100%
+            );
+            animation: radar-sweep 3s linear infinite;
+        }
+        
+        @keyframes radar-sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .radar-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .radar-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+        }
+        
+        /* Loading bars */
+        .loading-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(212, 175, 55, 0.5));
+            border-radius: 2px;
+            width: 0;
+            animation: loading-bar-anim 3s ease-in-out infinite;
+        }
+        
+        @keyframes loading-bar-anim {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        /* Dashboard grid layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 16px;
+        }
+        
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch-anim 2s infinite;
+        }
+        
+        @keyframes glitch-anim {
+            0% { transform: none; opacity: 1; }
+            7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+            10% { transform: none; opacity: 1; }
+            27% { transform: none; opacity: 1; }
+            30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+            35% { transform: none; opacity: 1; }
+            52% { transform: none; opacity: 1; }
+            55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+            50% { transform: none; opacity: 1; }
+            72% { transform: none; opacity: 1; }
+            75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+            80% { transform: none; opacity: 1; }
+            100% { transform: none; opacity: 1; }
+        }
+        
+        /* Terminal window */
+        .terminal {
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            color: #33ff33;
+            overflow: hidden;
+        }
+        
+        .terminal-line {
+            margin-bottom: 4px;
+            white-space: pre-wrap;
+        }
+        
+        .terminal-prompt::before {
+            content: '> ';
+            color: var(--accent-color);
+        }
+        
+        /* 3D button */
+        .btn-3d {
+            position: relative;
+            background: linear-gradient(to bottom, var(--accent-color), #b8860b);
+            border: none;
+            border-radius: 4px;
+            color: #000;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            box-shadow: 0 4px 0 #8b6914;
+        }
+        
+        .btn-3d:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #8b6914;
+        }
+        
+        .btn-3d:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #8b6914;
+        }
+        
+        /* Encryption visualization */
+        .encryption-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+            grid-gap: 2px;
+        }
+        
+        .encryption-cell {
+            height: 10px;
+            border-radius: 2px;
+            animation: encryption-cell-anim 3s infinite;
+        }
+        
+        @keyframes encryption-cell-anim {
+            0% { opacity: var(--init-opacity); }
+            50% { opacity: 1 - var(--init-opacity); }
+            100% { opacity: var(--init-opacity); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-gray-800 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="relative mr-3">
+                    <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border-2 border-amber-500 glow-accent">
+                        <i class="fas fa-shield-alt text-amber-500 text-2xl"></i>
+                    </div>
+                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full"></div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gradient">CyberCop Ultimate</h1>
+                    <p class="text-xs text-gray-400">Military-Grade AI Security Suite</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="px-4 py-2 border border-amber-500 rounded-md text-sm font-medium text-amber-500">
+                    <span class="mr-2"><i class="fas fa-crown"></i></span>
+                    <span>Premium</span>
+                </div>
+                <div class="px-4 py-2 border border-amber-500 bg-amber-500 rounded-md text-sm font-medium text-gray-900">
+                    <span class="mr-2"><i class="fas fa-key"></i></span>
+                    <span>Activation Key</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Security Status Overview -->
+        <section class="mb-10">
+            <div class="glass-panel p-6 relative overflow-hidden">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                
+                <div class="flex justify-between items-start mb-6 relative z-10">
+                    <div>
+                        <h2 class="text-xl font-bold text-gradient mb-1">QUANTUM DEFENSE MATRIX</h2>
+                        <p class="text-sm text-gray-400">Advanced AI security monitoring active</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <div class="px-3 py-1 bg-green-900 text-green-300 rounded-full text-xs font-medium flex items-center">
+                            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 pulse"></span>
+                            <span>Protection Active</span>
+                        </div>
+                        <div class="px-3 py-1 bg-amber-900 text-amber-300 rounded-full text-xs font-medium flex items-center">
+                            <span class="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
+                            <span>1 Warning</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-green-500 transition-all hover:transform hover:scale-105">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-300">Neural Shield</h3>
+                                <p class="text-xs text-gray-500 mt-1">Behavior-based protection</p>
+                            </div>
+                            <div class="text-green-500">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-green-500 h-1.5 rounded-full" style="width: 98%"></div>
+                            </div>
+                            <div class="mt-1 flex justify-between">
+                                <span class="text-xs text-gray-500">Protection Level</span>
+                                <span class="text-xs text-green-500">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-500 transition-all hover:transform hover:scale-105">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-300">Quantum Firewall</h3>
+                                <p class="text-xs text-gray-500 mt-1">Network intrusion prevention</p>
+                            </div>
+                            <div class="text-blue-500">
+                                <i class="fas fa-fire-alt text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="mt-1 flex justify-between">
+                                <span class="text-xs text-gray-500">Protection Level</span>
+                                <span class="text-xs text-blue-500">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-amber-500 transition-all hover:transform hover:scale-105">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-300">Zero-Day Guardian</h3>
+                                <p class="text-xs text-gray-500 mt-1">Unknown threat detection</p>
+                            </div>
+                            <div class="text-amber-500">
+                                <i class="fas fa-shield-virus text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-amber-500 h-1.5 rounded-full" style="width: 94%"></div>
+                            </div>
+                            <div class="mt-1 flex justify-between">
+                                <span class="text-xs text-gray-500">Protection Level</span>
+                                <span class="text-xs text-amber-500">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-purple-500 transition-all hover:transform hover:scale-105">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-300">Crypto Shield</h3>
+                                <p class="text-xs text-gray-500 mt-1">Ransomware protection</p>
+                            </div>
+                            <div class="text-purple-500">
+                                <i class="fas fa-lock text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-purple-500 h-1.5 rounded-full" style="width: 97%"></div>
+                            </div>
+                            <div class="mt-1 flex justify-between">
+                                <span class="text-xs text-gray-500">Protection Level</span>
+                                <span class="text-xs text-purple-500">97%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Main Dashboard -->
+        <div class="dashboard-grid mb-10">
+            <!-- AI Command Center -->
+            <div class="col-span-12 lg:col-span-9 mb-6">
+                <div class="glass-panel p-6 relative overflow-hidden h-full">
+                    <div class="mb-4 flex justify-between items-center">
+                        <h2 class="text-lg font-bold text-gradient">AI COMMAND CENTER</h2>
+                        <div class="flex items-center space-x-2">
+                            <div class="text-xs px-2 py-1 bg-gray-800 rounded-md">
+                                <span class="text-green-400 mr-1"><i class="fas fa-circle"></i></span>
+                                <span class="text-gray-400">Live Monitoring</span>
+                            </div>
+                            <div class="text-xs px-2 py-1 bg-gray-800 rounded-md">
+                                <span class="text-amber-400 mr-1"><i class="fas fa-bolt"></i></span>
+                                <span class="text-gray-400">Ultra Response</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-12 gap-4">
+                        <!-- Network Activity Map -->
+                        <div class="col-span-8 bg-gray-800 rounded-lg p-4 relative" style="height: 300px;">
+                            <h3 class="text-sm font-semibold text-gray-300 mb-2">Global Threat Intelligence Network</h3>
+                            <div class="absolute inset-4 top-10">
+                                <!-- This would be a canvas or SVG for network visualization in a real app -->
+                                <div class="neural-network" id="networkVisualization">
+                                    <!-- Neural network nodes and connections will be added by JavaScript -->
+                                </div>
+                                
+                                <!-- Scanner line effect -->
+                                <div class="scanner-line"></div>
+                                
+                                <!-- Simulated dots for threats -->
+                                <div class="absolute w-3 h-3 bg-red-500 rounded-full" style="top: 30%; left: 20%; animation: pulse 2s infinite;"></div>
+                                <div class="absolute w-2 h-2 bg-amber-500 rounded-full" style="top: 60%; left: 70%; animation: pulse 1.5s infinite;"></div>
+                                <div class="absolute w-2 h-2 bg-green-500 rounded-full" style="top: 20%; left: 50%; animation: pulse 3s infinite;"></div>
+                            </div>
+                            
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-between text-xs text-gray-500">
+                                <span>72 Nodes Monitored</span>
+                                <span>Global Coverage: 98.7%</span>
+                                <span>Threats Neutralized: 1,247</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Real-time Threat Detection -->
+                        <div class="col-span-4 bg-gray-800 rounded-lg p-4 flex flex-col">
+                            <h3 class="text-sm font-semibold text-gray-300 mb-2">Real-Time Threat Detection</h3>
+                            
+                            <div class="flex-grow overflow-auto space-y-2">
+                                <div class="p-2 bg-red-900 bg-opacity-20 rounded threat-pulse">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                                        <div class="text-xs text-red-400 font-medium">Critical Threat</div>
+                                        <div class="ml-auto text-xs text-gray-500">12s ago</div>
+                                    </div>
+                                    <p class="text-xs text-gray-300 mt-1">Polymorphic malware detected and quarantined</p>
+                                    <div class="mt-1 text-xs text-gray-500">Source: 104.23.98.190</div>
+                                </div>
+                                
+                                <div class="p-2 bg-amber-900 bg-opacity-20 rounded">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-amber-500 rounded-full mr-2"></div>
+                                        <div class="text-xs text-amber-400 font-medium">Suspicious Activity</div>
+                                        <div class="ml-auto text-xs text-gray-500">2m ago</div>
+                                    </div>
+                                    <p class="text-xs text-gray-300 mt-1">Unauthorized access attempt blocked</p>
+                                    <div class="mt-1 text-xs text-gray-500">Target: System Registry</div>
+                                </div>
+                                
+                                <div class="p-2 bg-blue-900 bg-opacity-20 rounded">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                        <div class="text-xs text-blue-400 font-medium">Network Alert</div>
+                                        <div class="ml-auto text-xs text-gray-500">8m ago</div>
+                                    </div>
+                                    <p class="text-xs text-gray-300 mt-1">Port scan detected and blocked</p>
+                                    <div class="mt-1 text-xs text-gray-500">Source: 185.143.223.12</div>
+                                </div>
+                                
+                                <div class="p-2 bg-green-900 bg-opacity-20 rounded">
+                                    <div class="flex items-center">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                        <div class="text-xs text-green-400 font-medium">Threat Neutralized</div>
+                                        <div class="ml-auto text-xs text-gray-500">15m ago</div>
+                                    </div>
+                                    <p class="text-xs text-gray-300 mt-1">Crypto-mining attempt prevented</p>
+                                    <div class="mt-1 text-xs text-gray-500">Process: miner32.exe</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 pt-3 border-t border-gray-700">
+                                <div class="text-xs text-gray-500 flex justify-between">
+                                    <span>Monitoring: <span class="text-green-500">Active</span></span>
+                                    <span>AI Response: <span class="text-green-500">Automatic</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- System Vitals -->
+                        <div class="col-span-4 bg-gray-800 rounded-lg p-4">
+                            <h3 class="text-sm font-semibold text-gray-300 mb-3">Neural Defense Engine</h3>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="relative flex items-center justify-center">
+                                        <svg class="w-20 h-20 progress-circle">
+                                            <circle cx="40" cy="40" r="36" class="progress-circle-bg"/>
+                                            <circle cx="40" cy="40" r="36" class="progress-circle-fill" stroke-dasharray="226.08 226.08" stroke-dashoffset="45.216"/>
+                                        </svg>
+                                        <div class="absolute text-center">
+                                            <div class="text-xl font-bold text-amber-500">80%</div>
+                                            <div class="text-xs text-gray-500">AI Load</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="relative flex items-center justify-center">
+                                        <svg class="w-20 h-20 progress-circle">
+                                            <circle cx="40" cy="40" r="36" class="progress-circle-bg"/>
+                                            <circle cx="40" cy="40" r="36" class="progress-circle-fill" stroke-dasharray="226.08 226.08" stroke-dashoffset="11.304"/>
+                                        </svg>
+                                        <div class="absolute text-center">
+                                            <div class="text-xl font-bold text-green-500">95%</div>
+                                            <div class="text-xs text-gray-500">Effectiveness</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 space-y-2">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-400">Neural Pattern Recognition</span>
+                                        <span class="text-amber-500">1.2M patterns/sec</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full" style="width: 85%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-400">Heuristic Analysis</span>
+                                        <span class="text-blue-500">8.4K processes</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 72%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-400">Behavioral Prediction</span>
+                                        <span class="text-green-500">99.8% accuracy</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full" style="width: 99%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Deep Scan Status -->
+                        <div class="col-span-4 bg-gray-800 rounded-lg p-4">
+                            <h3 class="text-sm font-semibold text-gray-300 mb-2">Quantum Deep Scan</h3>
+                            
+                            <div class="mt-2 space-y-3">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-400">Scan Progress</span>
+                                    <span class="text-amber-500">76%</span>
+                                </div>
+                                
+                                <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full relative" style="width: 76%;">
+                                        <div class="absolute inset-0 bg-white opacity-30" style="animation: scanning-pulse 1.5s ease-in-out infinite;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4 mt-2">
+                                    <div class="text-xs">
+                                        <div class="text-gray-400">Files Scanned</div>
+                                        <div class="text-white font-medium mt-1">328,457</div>
+                                    </div>
+                                    
+                                    <div class="text-xs">
+                                        <div class="text-gray-400">Threats Found</div>
+                                        <div class="text-red-500 font-medium mt-1">3</div>
+                                    </div>
+                                    
+                                    <div class="text-xs">
+                                        <div class="text-gray-400">Estimated Time</div>
+                                        <div class="text-white font-medium mt-1">14:32 remaining</div>
+                                    </div>
+                                    
+                                    <div class="text-xs">
+                                        <div class="text-gray-400">Scan Depth</div>
+                                        <div class="text-white font-medium mt-1">Quantum Level</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-center space-x-2 mt-2">
+                                    <button class="px-3 py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-white rounded">
+                                        <i class="fas fa-pause mr-1"></i> Pause
+                                    </button>
+                                    <button class="px-3 py-1.5 text-xs bg-red-900 hover:bg-red-800 text-red-300 rounded">
+                                        <i class="fas fa-stop mr-1"></i> Cancel
+                                    </button>
+                                    <button class="px-3 py-1.5 text-xs bg-blue-900 hover:bg-blue-800 text-blue-300 rounded">
+                                        <i class="fas fa-tasks mr-1"></i> Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Behavior Analysis -->
+                        <div class="col-span-4 bg-gray-800 rounded-lg p-4">
+                            <h3 class="text-sm font-semibold text-gray-300 mb-2">Behavioral Analysis</h3>
+                            
+                            <div class="space-y-2 mt-2">
+                                <div class="p-2 bg-gray-900 rounded-md">
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-white font-medium">chrome.exe</span>
+                                        <span class="text-green-400">Safe</span>
+                                    </div>
+                                    <div class="mt-1 flex space-x-1">
+                                        <div class="data-bar bg-green-500" style="--init-width: 80%;"></div>
+                                        <div class="data-bar bg-green-500" style="--init-width: 60%;"></div>
+                                        <div class="data-bar bg-green-500" style="--init-width: 75%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-2 bg-gray-900 rounded-md">
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-white font-medium">explorer.exe</span>
+                                        <span class="text-green-400">Safe</span>
+                                    </div>
+                                    <div class="mt-1 flex space-x-1">
+                                        <div class="data-bar bg-green-500" style="--init-width: 70%;"></div>
+                                        <div class="data-bar bg-green-500" style="--init-width: 65%;"></div>
+                                        <div class="data-bar bg-green-500" style="--init-width: 80%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-2 bg-amber-900 bg-opacity-30 rounded-md">
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-white font-medium">unknown32.exe</span>
+                                        <span class="text-amber-400">Monitoring</span>
+                                    </div>
+                                    <div class="mt-1 flex space-x-1">
+                                        <div class="data-bar bg-amber-500" style="--init-width: 55%;"></div>
+                                        <div class="data-bar bg-amber-500" style="--init-width: 40%;"></div>
+                                        <div class="data-bar bg-amber-500" style="--init-width: 65%;"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-2 bg-red-900 bg-opacity-30 rounded-md">
+                                    <div class="flex justify-between text-xs">
+                                        <span class="text-white font-medium">svchost_m.exe</span>
+                                        <span class="text-red-400">Suspicious</span>
+                                    </div>
+                                    <div class="mt-1 flex space-x-1">
+                                        <div class="data-bar bg-red-500" style="--init-width: 90%;"></div>
+                                        <div class="data-bar bg-red-500" style="--init-width: 85%;"></div>
+                                        <div class="data-bar bg-red-500" style="--init-width: 95%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 text-xs text-gray-500">
+                                <div class="flex justify-between">
+                                    <span>Monitoring 37 active processes</span>
+                                    <span class="text-amber-500">1 suspicious activity</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- K-9 Unit - The AI Pitbull -->
+            <div class="col-span-12 lg:col-span-3 mb-6">
+                <div class="glass-panel p-6 h-full flex flex-col">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-bold text-gradient">K-9 UNIT</h2>
+                        <p class="text-sm text-gray-400">Mad Pitbull Sentinel</p>
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col items-center justify-center">
+                        <div class="relative mb-4">
+                            <!-- The cyber pitbull animation container -->
+                            <div class="cyber-dog">
+                                <div class="cyber-dog-head">
+                                    <div class="cyber-dog-eye cyber-dog-eye-left"></div>
+                                    <div class="cyber-dog-eye cyber-dog-eye-right"></div>
+                                    <div class="cyber-dog-ear cyber-dog-ear-left"></div>
+                                    <div class="cyber-dog-ear cyber-dog-ear-right"></div>
+                                    <div class="cyber-dog-snout"></div>
+                                </div>
+                                <div class="cyber-dog-body"></div>
+                                <div class="cyber-dog-leg cyber-dog-leg-front-left"></div>
+                                <div class="cyber-dog-leg cyber-dog-leg-front-right"></div>
+                                <div class="cyber-dog-leg cyber-dog-leg-back-left"></div>
+                                <div class="cyber-dog-leg cyber-dog-leg-back-right"></div>
+                                <div class="cyber-dog-tail"></div>
+                            </div>
+                            
+                            <!-- Glowing shield effect around the dog -->
+                            <div class="absolute inset-0 rounded-full border-2 border-amber-500 glow-accent" style="animation: pulse 2s infinite; opacity: 0.5;"></div>
+                        </div>
+                        
+                        <div class="w-full p-3 bg-gray-800 rounded-lg mb-4">
+                            <div class="text-xs text-center mb-2 text-white">Threat Hunting Status</div>
+                            <div class="text-center mb-2">
+                                <span class="text-xl font-bold text-green-500">ACTIVE</span>
+                            </div>
+                            <div class="text-xs text-gray-500 text-center">Actively patrolling system</div>
+                        </div>
+                        
+                        <div class="terminal w-full text-xs">
+                            <div class="terminal-line">K-9 UNIT OPERATIONAL</div>
+                            <div class="terminal-line">Scanning system perimeter...</div>
+                            <div class="terminal-line">Behavioral patterns analyzed</div>
+                            <div class="terminal-line">Intrusion vectors monitored</div>
+                            <div class="terminal-line terminal-prompt hacking-text">Hunting malicious code...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>Threats neutralized: <span class="text-green-500 font-medium">1,247</span></span>
+                            <span>K-9 Version: <span class="text-amber-500">v4.2.1</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Protection Features -->
+        <section class="mb-10">
+            <div class="glass-panel p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-gradient">QUANTUM PROTECTION MATRIX</h2>
+                    <p class="text-sm text-gray-400">Military-grade defense technologies</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Advanced Shield -->
+                    <div class="bg-gray-800 rounded-lg p-5 border-gradient">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-purple-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold">Super Shield</h3>
+                                <p class="text-xs text-gray-400 mt-1">Enhanced multi-layer protection</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-gray-400">Quantum Barrier</span>
+                                    <span class="text-green-500">Enabled</span>
+                                </div>
+                                <div class="w-full h-1 bg-gray-700 rounded-full">
+                                    <div class="h-full bg-purple-500 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-gray-400">Neural Defense</span>
+                                    <span class="text-green-500">Enabled</span>
+                                </div>
+                                <div class="w-full h-1 bg-gray-700 rounded-full">
+                                    <div class="h-full bg-purple-500 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-gray-400">Deep Packet Inspection</span>
+                                    <span class="text-green-500">Enabled</span>
+                                </div>
+                                <div class="w-full h-1 bg-gray-700 rounded-full">
+                                    <div class="h-full bg-purple-500 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-xs text-gray-500">
+                            Military-grade protection utilizing quantum-resistant encryption algorithms and AI-driven adaptive security.
+                        </div>
+                    </div>
+                    
+                    <!-- Super Virus Killer -->
+                    <div class="bg-gray-800 rounded-lg p-5 border-gradient">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-red-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-virus-slash text-red-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold">Super Virus Killer</h3>
+                                <p class="text-xs text-gray-400 mt-1">Advanced threat elimination</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center text-xs">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                <div class="text-gray-300">Polymorphic malware neutralization</div>
+                            </div>
+                            
+                            <div class="flex items-center text-xs">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                <div class="text-gray-300">Rootkit & bootkit removal capabilities</div>
+                            </div>
+                            
+                            <div class="flex items-center text-xs">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                <div class="text-gray-300">Memory injection detection & prevention</div>
+                            </div>
+                            
+                            <div class="flex items-center text-xs">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                <div class="text-gray-300">Fileless malware termination</div>
+                            </div>
+                            
+                            <div class="flex items-center text-xs">
+                                <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                <div class="text-gray-300">Advanced persistent threat (APT) removal</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-xs text-gray-500">
+                            Combat-proven technology using cutting-edge AI to identify, isolate, and eliminate even the most sophisticated threats.
+                        </div>
+                    </div>
+                    
+                    <!-- Super Scanner -->
+                    <div class="bg-gray-800 rounded-lg p-5 border-gradient">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-900 flex items-center justify-center mr-4">
+                                <i class="fas fa-search text-blue-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-bold">Super Scanner</h3>
+                                <p class="text-xs text-gray-400 mt-1">Ultra-depth system analysis</p>
+                            </div>
+                        </div>
+                        
+                        <div class="radar relative mx-auto mb-4">
+                            <div class="radar-sweep"></div>
+                            <div class="radar-ring" style="width: 80%; height: 80%;"></div>
+                            <div class="radar-ring" style="width: 50%; height: 50%;"></div>
+                            <div class="radar-ring" style="width: 20%; height: 20%;"></div>
+                            <div class="radar-dot" style="top: 30%; left: 40%;"></div>
+                            <div class="radar-dot" style="top: 60%; left: 70%;"></div>
+                            <div class="radar-dot" style="top: 75%; left: 25%;"></div>
+                        </div>
+                        
+                        <div class="mt-4 text-xs text-gray-500">
+                            Quantum-level scanning technology capable of detecting zero-day vulnerabilities, hidden malware, and advanced persistence mechanisms.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Advanced Features -->
+        <section class="mb-10">
+            <div class="glass-panel p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-gradient">ADVANCED SECURITY FEATURES</h2>
+                    <p class="text-sm text-gray-400">Enterprise-grade protection components</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-gray-800 rounded-lg p-4 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-amber-900 bg-opacity-30 flex items-center justify-center mb-3">
+                            <i class="fas fa-microchip text-amber-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-white font-semibold text-center">Real-Time Threat Detection</h3>
+                        <p class="text-xs text-gray-400 text-center mt-2">
+                            Monitors all system processes and network activity in real-time using advanced behavioral analysis.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-3">
+                            <i class="fas fa-key text-purple-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-white font-semibold text-center">Activation Key System</h3>
+                        <p class="text-xs text-gray-400 text-center mt-2">
+                            Securely manage your premium subscription with military-grade license verification.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-3">
+                            <i class="fas fa-laptop-medical text-green-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-white font-semibold text-center">System Healing</h3>
+                        <p class="text-xs text-gray-400 text-center mt-2">
+                            Repairs system files damaged by malware and restores system integrity automatically.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-3">
+                            <i class="fas fa-server text-blue-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-white font-semibold text-center">Diagnostic Tools</h3>
+                        <p class="text-xs text-gray-400 text-center mt-2">
+                            Comprehensive system diagnosis to identify vulnerabilities and optimization opportunities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Real-time Updates and Encryption -->
+        <section class="mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Real-time Updates -->
+                <div class="glass-panel p-6">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-bold text-gradient">REAL-TIME UPDATES</h2>
+                        <p class="text-sm text-gray-400">Continuous protection enhancement</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-sm font-semibold text-white">Threat Database Update</h3>
+                                <p class="text-xs text-gray-500 mt-1">Latest version: 243.56.78</p>
+                            </div>
+                            <div>
+                                <span class="text-xs px-2 py-1 bg-green-900 text-green-400 rounded-full">Up to date</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <div class="text-xs text-gray-400 mb-1">Last checked: 4 minutes ago</div>
+                            <div class="code-rain">
+                                <!-- Code rain effect will be generated by JavaScript -->
+                            </div>
+                            <div class="text-xs text-gray-500 mt-2">
+                                Neural network continuously learning from global threat intelligence network
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-sm font-semibold text-white">Update Schedule</h3>
+                            <div class="text-xs text-amber-500">AI-Managed</div>
+                        </div>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between py-1 border-b border-gray-700">
+                                <span class="text-gray-400">Threat Definitions</span>
+                                <span class="text-gray-300">Every 4 hours</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-gray-700">
+                                <span class="text-gray-400">Neural Engine</span>
+                                <span class="text-gray-300">Weekly</span>
+                            </div>
+                            <div class="flex justify-between py-1 border-b border-gray-700">
+                                <span class="text-gray-400">Core Components</span>
+                                <span class="text-gray-300">As available</span>
+                            </div>
+                            <div class="flex justify-between py-1">
+                                <span class="text-gray-400">Emergency Patches</span>
+                                <span class="text-gray-300">Immediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quantum Encryption -->
+                <div class="glass-panel p-6">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-bold text-gradient">QUANTUM-RESISTANT ENCRYPTION</h2>
+                        <p class="text-sm text-gray-400">Military-grade data protection</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-lg bg-blue-900 bg-opacity-30 flex items-center justify-center mr-3">
+                                <i class="fas fa-lock text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-white">Advanced Encryption Status</h3>
+                                <p class="text-xs text-gray-400 mt-1">Post-quantum cryptographic algorithms active</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="encryption-grid h-16">
+                                <!-- Encryption cells will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-xs text-gray-500">
+                            Utilizing lattice-based cryptography and homomorphic encryption to protect against quantum computing attacks.
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 rounded-lg p-4">
+                        <h3 class="text-sm font-semibold text-white mb-3">Protected Data Categories</h3>
+                        
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-300">Personal Files</span>
+                                </div>
+                                <div class="text-xs text-green-500">Protected</div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-300">Financial Data</span>
+                                </div>
+                                <div class="text-xs text-green-500">Protected</div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-300">Passwords & Credentials</span>
+                                </div>
+                                <div class="text-xs text-green-500">Protected</div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-300">Communications</span>
+                                </div>
+                                <div class="text-xs text-green-500">Protected</div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-300">System Files</span>
+                                </div>
+                                <div class="text-xs text-green-500">Protected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Subscription Information -->
+        <section class="mb-10">
+            <div class="glass-panel p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-gradient">PREMIUM PROTECTION PLAN</h2>
+                    <p class="text-sm text-gray-400">Subscription details and management</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="col-span-1 bg-gray-800 rounded-lg p-5">
+                        <h3 class="text-white font-bold mb-3">Subscription Status</h3>
+                        
+                        <div class="bg-amber-900 bg-opacity-20 p-3 rounded-lg mb-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center mr-3">
+                                    <i class="fas fa-crown text-gray-900"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Premium Protection</div>
+                                    <div class="text-xs text-amber-500">30-Day Trial Active</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-1">Trial Period Remaining</div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-amber-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs mt-1">
+                                    <span class="text-gray-500">21 days left</span>
+                                    <span class="text-amber-500">Expires Oct 12, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-3 border-t border-gray-700">
+                                <div class="text-sm font-semibold text-white mb-2">After Trial Ends</div>
+                                <div class="text-xs text-gray-400">
+                                    <p>Your premium protection will continue at <span class="text-amber-500 font-semibold">$19.99/month</span> unless canceled.</p>
+                                    <p class="mt-2">All premium features remain active with automatic billing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-1 bg-gray-800 rounded-lg p-5">
+                        <h3 class="text-white font-bold mb-3">Premium Features</h3>
+                        
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Advanced AI Threat Detection</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Quantum-Resistant Encryption</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">K-9 Unit (Super Virus Killer)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Zero-Day Vulnerability Protection</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Ransomware Recovery System</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Neural Network Security</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">System Healing & Diagnostics</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-xs text-gray-300">Priority Threat Response</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-1 bg-gray-800 rounded-lg p-5">
+                        <h3 class="text-white font-bold mb-3">Activation Key</h3>
+                        
+                        <div class="mb-4">
+                            <div class="terminal mb-4">
+                                <div class="terminal-line">KEY STATUS: ACTIVATED</div>
+                                <div class="terminal-line">DEVICE ID: 8A7F-3E2D-9C4B</div>
+                                <div class="terminal-line">LICENSE: PREMIUM TRIAL</div>
+                            </div>
+                            
+                            <div class="flex space-x-2 mb-4">
+                                <input type="text" class="flex-grow bg-gray-900 border border-gray-700 rounded px-3 py-2 text-xs text-gray-300" placeholder="Enter new activation key">
+                                <button class="px-3 py-2 bg-amber-600 hover:bg-amber-500 text-gray-900 rounded text-xs font-medium">
+                                    Apply
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-3 border-t border-gray-700">
+                            <button class="w-full py-2 btn-3d mb-3">
+                                <span class="mr-2"><i class="fas fa-credit-card"></i></span>
+                                <span>Subscribe Now $19.99/mo</span>
+                            </button>
+                            
+                            <div class="text-center text-xs text-gray-500">
+                                <p>Secure payment processing</p>
+                                <p class="mt-1">30-day money-back guarantee</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 px-6 py-8">
+        <div class="container mx-auto">
+            <div class="text-center mb-6">
+                <div class="inline-block mb-2">
+                    <div class="w-12 h-12 bg-gray-800 rounded-lg mx-auto flex items-center justify-center border-2 border-amber-500">
+                        <i class="fas fa-shield-alt text-amber-500 text-2xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-gradient">CyberCop Ultimate</h2>
+                <p class="text-sm text-gray-400">Next-Generation AI Security Suite</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-amber-500">Features</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Pricing</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Updates</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Beta Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-amber-500">Documentation</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Knowledge Base</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Contact Support</a></li>
+                        <li><a href="#" class="hover:text-amber-500">System Requirements</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-amber-500">About Us</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Careers</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Blog</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-amber-500">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-amber-500">License Agreement</a></li>
+                        <li><a href="#" class="hover:text-amber-500">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+                <p>© 2023 CyberCop Security Systems. All rights reserved.</p>
+                <p class="mt-2">CyberCop Ultimate uses advanced AI and quantum-resistant encryption to provide military-grade protection.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Neural network visualization
+            function createNeuralNetwork() {
+                const container = document.getElementById('networkVisualization');
+                if (!container) return;
+                
+                // Clear existing content
+                container.innerHTML = '';
+                
+                const nodes = [];
+                const nodeCount = 20;
+                
+                // Create nodes
+                for (let i = 0; i < nodeCount; i++) {
+                    const node = document.createElement('div');
+                    node.className = 'neural-node';
+                    
+                    // Random position
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+                    
+                    node.style.left = `${x}%`;
+                    node.style.top = `${y}%`;
+                    
+                    // Random size
+                    const size = 4 + Math.random() * 8;
+                    node.style.width = `${size}px`;
+                    node.style.height = `${size}px`;
+                    
+                    // Pulse animation with random delay
+                    node.style.animation = `pulse ${2 + Math.random() * 2}s infinite ${Math.random() * 2}s`;
+                    
+                    container.appendChild(node);
+                    nodes.push({ element: node, x, y });
+                }
+                
+                // Create connections between nodes
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        // Only connect some nodes (not all-to-all)
+                        if (Math.random() > 0.7) continue;
+                        
+                        const connection = document.createElement('div');
+                        connection.className = 'neural-connection';
+                        
+                        const startX = nodes[i].x;
+                        const startY = nodes[i].y;
+                        const endX = nodes[j].x;
+                        const endY = nodes[j].y;
+                        
+                        // Calculate length and angle
+                        const dx = endX - startX;
+                        const dy = endY - startY;
+                        const length = Math.sqrt(dx * dx + dy * dy);
+                        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                        
+                        connection.style.width = `${length}%`;
+                        connection.style.left = `${startX}%`;
+                        connection.style.top = `${startY}%`;
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        
+                        // Subtle animation for data flow
+                        connection.style.animation = `pulse ${3 + Math.random() * 3}s infinite ${Math.random() * 3}s`;
+                        
+                        container.appendChild(connection);
+                    }
+                }
+            }
+            
+            // Create code rain effect
+            function createCodeRain() {
+                const containers = document.querySelectorAll('.code-rain');
+                
+                containers.forEach(container => {
+                    // Clear existing content
+                    container.innerHTML = '';
+                    
+                    const columns = 20;
+                    
+                    for (let i = 0; i < columns; i++) {
+                        const column = document.createElement('div');
+                        column.className = 'code-column';
+                        
+                        // Random content (binary or hex)
+                        let content = '';
+                        const isHex = Math.random() > 0.5;
+                        const charCount = 5 + Math.floor(Math.random() * 10);
+                        
+                        for (let j = 0; j < charCount; j++) {
+                            if (isHex) {
+                                content += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+                            } else {
+                                content += Math.random() > 0.5 ? '1' : '0';
+                            }
+                            content += '<br>';
+                        }
+                        
+                        column.innerHTML = content;
+                        
+                        // Random position and animation
+                        column.style.left = `${i * (100 / columns)}%`;
+                        column.style.animationDuration = `${3 + Math.random() * 5}s`;
+                        column.style.animationDelay = `${Math.random() * 2}s`;
+                        
+                        container.appendChild(column);
+                    }
+                });
+            }
+            
+            // Create encryption visualization
+            function createEncryptionGrid() {
+                const containers = document.querySelectorAll('.encryption-grid');
+                
+                containers.forEach(container => {
+                    // Clear existing content
+                    container.innerHTML = '';
+                    
+                    const cellCount = 100;
+                    
+                    for (let i = 0; i < cellCount; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'encryption-cell';
+                        
+                        // Random appearance
+                        const isHighlighted = Math.random() > 0.8;
+                        
+                        if (isHighlighted) {
+                            cell.style.backgroundColor = '#D4AF37';
+                        } else {
+                            cell.style.backgroundColor = `rgba(212, 175, 55, ${0.2 + Math.random() * 0.5})`;
+                        }
+                        
+                        // Random animation
+                        cell.style.setProperty('--init-opacity', 0.2 + Math.random() * 0.7);
+                        cell.style.animationDuration = `${1 + Math.random() * 3}s`;
+                        cell.style.animationDelay = `${Math.random() * 2}s`;
+                        
+                        container.appendChild(cell);
+                    }
+                });
+            }
+            
+            // Initialize visualizations
+            createNeuralNetwork();
+            createCodeRain();
+            createEncryptionGrid();
+            
+            // Resize handler for responsive visualizations
+            window.addEventListener('resize', () => {
+                createNeuralNetwork();
+            });
+        });
+    </script>
+</body>
+</html>
